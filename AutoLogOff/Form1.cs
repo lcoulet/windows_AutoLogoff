@@ -22,10 +22,19 @@ namespace WindowsFormsApplication1
         public AutoLogoff()
         {
             InitializeComponent();
-            labelInformation.Text = "Note: This session will be automatically disconnected after "+MAX_IDLE_MINUTES_BEFORE_LOGOFF+" minutes idle time";
+            InitNumberOfMinutesBeforeLogoff();
+            labelInformation.Text = "Note: This session will be automatically disconnected after "+NumberOfMinutesBeforeLogoff+" minutes idle time";
              
             Thread workerThread = new Thread(new ThreadStart(this.DoWork));
             workerThread.Start();
+        }
+
+        private void InitNumberOfMinutesBeforeLogoff()
+        {
+            String envVariable = Environment.GetEnvironmentVariable("AUTOLOGOFF_NB_IDLE_MINUTES",  EnvironmentVariableTarget.Machine);
+            if(envVariable != null){
+                NumberOfMinutesBeforeLogoff = int.Parse(envVariable);
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -53,7 +62,7 @@ namespace WindowsFormsApplication1
             {
                 int elapsedIdelTime=GetLastInputTime();
                 this.setIdleLabel(elapsedIdelTime);
-                if (elapsedIdelTime > 60 * MAX_IDLE_MINUTES_BEFORE_LOGOFF) //30 min idle time
+                if (elapsedIdelTime > 60 * NumberOfMinutesBeforeLogoff) //30 min idle time
                 {
                     ExitWindowsEx(0x10, 0);
                     _shouldStop = true;
@@ -104,7 +113,7 @@ namespace WindowsFormsApplication1
         }
 
 
-        public int MAX_IDLE_MINUTES_BEFORE_LOGOFF = 30;
+        public int NumberOfMinutesBeforeLogoff = 30;
     }
 
     
