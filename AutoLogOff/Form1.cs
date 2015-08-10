@@ -62,7 +62,7 @@ namespace WindowsFormsApplication1
             {
                 int elapsedIdelTime=GetLastInputTime();
                 this.setIdleLabel(elapsedIdelTime);
-                if (elapsedIdelTime > 60 * NumberOfMinutesBeforeLogoff) //30 min idle time
+                if (elapsedIdelTime > 60 * NumberOfMinutesBeforeLogoff) 
                 {
                     ExitWindowsEx(0x10, 0);
                     _shouldStop = true;

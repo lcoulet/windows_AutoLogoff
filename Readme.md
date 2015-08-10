@@ -21,5 +21,6 @@ By default the delay is to log off user after 30 minutes Idle time.
 The setting can be override by creating a system environment variables named `AUTOLOGOFF_NB_IDLE_MINUTES` 
 
 
-Tested on Windows 7 and Windows Server 2012 R2.
+
+Tested on **Windows 7** and **Windows Server 2012 R2** Operating systems.
 
