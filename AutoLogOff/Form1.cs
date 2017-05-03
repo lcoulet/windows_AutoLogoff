@@ -31,7 +31,7 @@ namespace WindowsFormsApplication1
 
         private void InitNumberOfMinutesBeforeLogoff()
         {
-            String envVariable = Environment.GetEnvironmentVariable("AUTOLOGOFF_NB_IDLE_MINUTES",  EnvironmentVariableTarget.Machine);
+            String envVariable = Environment.GetEnvironmentVariable("AUTOLOGOFF_NB_IDLE_MINUTES");
             if(envVariable != null){
                 NumberOfMinutesBeforeLogoff = int.Parse(envVariable);
             }
